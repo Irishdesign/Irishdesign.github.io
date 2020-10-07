@@ -269,7 +269,6 @@ Working experience as a front-end and full-stack developer with professional ski
 			<div id="intro">
 				<h2>Protfolio</h2>
 				<hr/>
-				<!-- <p>學經歷及工作成果</p>          -->
 			</div>
 
 			<div class="cards">
@@ -304,16 +303,17 @@ Working experience as a front-end and full-stack developer with professional ski
 					</div>
 				</div></a>
 			
-				<div class="card" style="background-image: url(./img/Li.png)">
+				<div class="card" style="background-image: url(./img/meHelper.png)" onclick="showPopup('popME')">
 					<div class="introduction">
 						<div class="content">
 							<div class="des">
-								<h3>LangIsland</h3>
-								English study group with membership management and point system. TBC...
+								<h3>LineBot-Study Helper</h3>
+								A reminder of English study group's daily discussion.
 							</div>
 							<div class="tags">
-								<div class="tag"> PHP </div>
-								<div class="tag"> Laravel </div>
+								<div class="tag"> Line API </div>
+								<div class="tag"> JavaScript </div>
+								<div class="tag"> Google APPs Script </div>
 							</div>
 						</div>
 					</div>
@@ -363,7 +363,53 @@ Working experience as a front-end and full-stack developer with professional ski
 						</div>
 					</div>
 				</div></a>
+				<div class="card" style="background-image: url(./img/iris.png)">
+					<div class="introduction">
+						<div class="content">
+							<div class="des">
+								<h3>My page</h3>
+								A website for Introducting myself and works.
+							</div>
+							<div class="tags">
+								<div class="tag"> RWD </div>
+								<div class="tag"> JQuery </div>
+								<div class="tag"> Bootstrap </div>
+								<div class="tag"> Firebase Hosting </div>
+							</div>
+						</div>
+					</div>
+				</div>
 		
+				<div class="card" style="background-image: url(./img/ukHelper.png)" onclick="showPopup('popUK')">
+					<div class="introduction">
+						<div class="content">
+							<div class="des">
+								<h3>LineBot-Exchange Helper</h3>
+								An exchange rate helper for making currency exchange strategies.
+							</div>
+							<div class="tags">
+								<div class="tag"> Line API </div>
+								<div class="tag"> Google APPs Script </div>
+								<div class="tag"> JavaScript </div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card" style="background-image: url(./img/Li.png)">
+					<div class="introduction">
+						<div class="content">
+							<div class="des">
+								<h3>LangIsland</h3>
+								English study group with membership management and point system. TBC...
+							</div>
+							<div class="tags">
+								<div class="tag"> PHP </div>
+								<div class="tag"> Laravel </div>
+							</div>
+						</div>
+					</div>
+				</div>
+			
 			</div>
 		</div>
 		<div id="experience">
@@ -394,7 +440,7 @@ Working experience as a front-end and full-stack developer with professional ski
 					<li class='event offset-first wow fadeInLeft'>
 						<b>1.6yr Front-end Engineer <br/>@ Lion Travel-The biggest travel company in Taiwan</b>
 						<hr>
-						<img class="imgclass img-responsive" src="https://s.yimg.com/lo/api/res/1.2/N80Zl6JFlNOyY3OF7lzU1Q--~B/YXBwaWQ9eXR3bW9uZXk7c209MTt3PTgwMA--/https://media.zenfs.com/zh-tw/ebc__387/8ad6f6127fc5bfcddc519bc3472026f6" alt="work" />
+						<a href="https://www.liontravel.com/" target="_blank"><img class="imgclass img-responsive" src="https://s.yimg.com/lo/api/res/1.2/N80Zl6JFlNOyY3OF7lzU1Q--~B/YXBwaWQ9eXR3bW9uZXk7c209MTt3PTgwMA--/https://media.zenfs.com/zh-tw/ebc__387/8ad6f6127fc5bfcddc519bc3472026f6" alt="work" /></a>
 					</li>
 					<li class='event wow fadeInRight' href="#" data-wow-delay="0.2s">
 						<b>2019.6 - 2020.9</b><br/>
@@ -441,6 +487,7 @@ Working experience as a front-end and full-stack developer with professional ski
 			</div>
    		</div>
 	</div>
+
 	<div id="footer">
 		<div class="container clearfix">
 			<div class="logo">
@@ -465,7 +512,29 @@ Working experience as a front-end and full-stack developer with professional ski
 			</div>
 		</div>	
 	</div>	
-
+	<div class="popup" id="popME">
+		<ul class="dis">
+			<li># New member greeting.</li>
+			<li># Reply particular command for opening Skype rooms.</li>
+			<li># Daily discussions reminding.</li>					
+		</ul>
+		<div class="photos">
+		<img src="./img/me1.png" alt="me1">
+		<img src="./img/me2.png" alt="me2">
+	</div>
+	</div>
+	<div class="popup" id="popUK">
+		<ul class="dis">
+			<li># Daily ragular exchange rate repoting.</li>
+			<li># Write records into a google sheet.</li>	
+		</ul>
+		<div class="photos">
+		<img src="./img/uk1.png" alt="uk1">
+		<img src="./img/uk2.png" alt="uk2">
+		</div>
+	</div>
+	<div class="popup_background" onclick="closePopup()">	
+	</div>
 	<a id="go-top" href="#header">Top</a>	
 	<!--bigphoto placeholder-->
 
@@ -481,9 +550,11 @@ Working experience as a front-end and full-stack developer with professional ski
   	  	AOS.init();
 		
 		$(window).on('scroll',function() {  
+			closePopup()
 			topNavScroll();
 			skillBarScroll(); 
 			changeNav();
+			
 		});  
    
  	 
@@ -505,9 +576,22 @@ Working experience as a front-end and full-stack developer with professional ski
 					break;
 			}
 		});
-  
+       $('.popup').on('click',function(e){
+			closePopup();
+	   })
+
+	   function showPopup(type){
+		   $(`#${type}`).addClass('show');
+		   $(`.popup_background`).addClass('show');
+	   }
+
+	   function closePopup(){
+		   $('.popup').removeClass('show');
+		   $(`.popup_background`).removeClass('show');
+	   }
 
 		function topNavScroll(){  
+			closePopup()
 			//取當前navbar頂部像素值           
 			var topScroll = Math.floor($(window).scrollTop());     
 			//大於0，漸變為0.5透
@@ -536,6 +620,7 @@ Working experience as a front-end and full-stack developer with professional ski
 		};
 		 
 		function changeNav(){  
+			closePopup()
 			var topScroll = Math.floor($(window).scrollTop()); 
 			var aboutMe= Math.floor($("#outlets").offset().top); 
 			var skills= Math.floor($("#skills").offset().top); 	
